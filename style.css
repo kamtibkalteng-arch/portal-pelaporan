@@ -170,3 +170,41 @@ body {
         display: none; /* Otomatis tersembunyi di layar HP agar menu tidak tertutup */
     }
 }
+
+/* --- LOGO KHUSUS PENCEGAHAN GANGGUAN KAMTIB --- */
+.logo-kamtib-wrapper {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 15px auto;
+    filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.6));
+}
+
+.logo-kamtib-svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* --- TOMBOL NAVIGASI KEMBALI --- */
+.back-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #4a0303 0%, #1a0202 100%);
+    border: 2px solid #d4af37;
+    color: #e2b047;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 1.5px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+    transition: all 0.25s ease-in-out;
+}
+
+.back-button:hover {
+    background: linear-gradient(135deg, #800c0c 0%, #4a0303 100%);
+    color: #ffffff;
+    border-color: #ffffff;
+    box-shadow: 0 6px 20px rgba(226, 176, 71, 0.5);
+    transform: translateY(-2px);
+}
