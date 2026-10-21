@@ -1,81 +1,172 @@
-/* Mengatur latar belakang halaman menjadi biru tua */
-body {
-    background-color: #0b1c3c; /* Warna dasar biru tua */
-    color: #ffffff; /* Warna teks putih */
-    font-family: Arial, sans-serif;
+* {
+    box-sizing: border-box;
     margin: 0;
-    padding: 20px;
+    padding: 0;
+}
+
+body {
+    background: radial-gradient(circle at center, #2e0808 0%, #0d0404 60%, #050202 100%);
+    color: #ffffff;
+    font-family: 'Oswald', 'Arial Narrow', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow-x: hidden;
+    padding: 20px 15px;
+}
+
+/* --- TAMPILAN TALAWANG TEGAS DUA SISI --- */
+.talawang-side {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 280px; /* Ukuran besar & menjorok gagah */
+    height: auto;
+    z-index: 1;
+    pointer-events: none;
+    filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.5));
+}
+
+.talawang-left {
+    left: -40px; /* Menjorok ke dalam di kiri */
+}
+
+.talawang-right {
+    right: -40px; /* Menjorok ke dalam di kanan */
+}
+
+.talawang-svg {
+    width: 100%;
+    height: auto;
+}
+
+/* --- KONTAINER UTAMA --- */
+.main-wrapper {
+    width: 100%;
+    max-width: 580px;
+    text-align: center;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh;
 }
 
-/* Pengaturan Header (Logo dan Judul) */
-.header-container {
-    text-align: center;
+/* --- LOGO TANPA KOTAK HITAM --- */
+.header-box {
     margin-bottom: 30px;
-    margin-top: 20px;
 }
 
-.logo {
-    width: 80px; /* Ukuran lebar logo */
+.logo-glow-container {
+    display: inline-block;
+    border-radius: 50%;
+    background: #000;
+    box-shadow: 0 0 35px rgba(212, 175, 55, 0.7);
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.logo-image {
+    width: 220px;
     height: auto;
-    margin-bottom: 10px;
+    display: block;
+    mix-blend-mode: screen; /* Menghilangkan background hitam logo */
 }
 
-.header-container h1 {
-    font-size: 20px;
-    font-weight: bold;
-    margin: 5px 0;
-    letter-spacing: 1px;
+.header-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #e2b047;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.95);
 }
 
-.header-container p {
-    font-size: 13px;
-    color: #d1d5db;
-    margin: 0;
-}
-
-/* Pengaturan Kontainer Menu */
+/* --- KOTAK MENU --- */
 .menu-container {
     width: 100%;
-    max-width: 600px; /* Batas lebar maksimal kotak menu */
     display: flex;
     flex-direction: column;
-    gap: 12px; /* Jarak antar tombol */
+    gap: 16px;
 }
 
-/* Pengaturan Kotak Tombol (Card) */
-.menu-card {
-    background-color: rgba(255, 255, 255, 0.1); /* Efek transparan tipis */
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #ffffff;
-    padding: 14px 18px;
-    border-radius: 8px; /* Membuat sudut tombol melengkung */
-    text-decoration: none;
+.card-item {
+    background: #0f0f12;
+    border: 2px solid #d4af37;
+    border-radius: 12px;
     display: flex;
-    align-items: center;
-    gap: 15px;
-    font-size: 13px;
-    font-weight: 500;
-    transition: background-color 0.2s, transform 0.2s;
+    align-items: stretch;
+    text-decoration: none;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.8);
+    transition: all 0.25s ease-in-out;
 }
 
-/* Efek saat kursor menyentuh tombol (hover) */
-.menu-card:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+.card-item:hover {
+    border-color: #ffffff;
+    box-shadow: 0 8px 25px rgba(226, 176, 71, 0.5);
     transform: translateY(-2px);
 }
 
-.icon {
-    font-size: 18px;
+.card-icon-wrapper {
+    background: linear-gradient(180deg, #800c0c 0%, #4a0303 100%);
+    width: 85px;
+    min-width: 85px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid rgba(212, 175, 55, 0.5);
 }
 
-/* Pengaturan Footer */
-footer {
-    margin-top: 40px;
-    text-align: center;
-    font-size: 11px;
-    color: #9ca3af;
+.custom-icon {
+    width: 36px;
+    height: 36px;
+    fill: #e2b047;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
+}
+
+.card-label {
+    padding: 16px 20px;
+    color: #ffffff;
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.35;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.5px;
+}
+
+/* --- FOOTER --- */
+.footer-text {
+    margin-top: 35px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    color: #d1d1d1;
+    line-height: 1.6;
+}
+
+.footer-bold {
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #e2b047;
+    letter-spacing: 1px;
+}
+
+/* --- RESPONSIVE UNTUK MONITORS & HP --- */
+@media (max-width: 1100px) {
+    .talawang-side {
+        width: 180px;
+        opacity: 0.7;
+    }
+}
+
+@media (max-width: 768px) {
+    .talawang-side {
+        display: none; /* Otomatis tersembunyi di layar HP agar menu tidak tertutup */
+    }
 }
