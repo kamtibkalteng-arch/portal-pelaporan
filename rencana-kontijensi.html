@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rencana Kontijensi & Penanggulangan Bencana - Kanwil Ditjenpas Kalteng</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Roboto:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS Modal Pop-Up Interaktif */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: linear-gradient(145deg, #2e0808 0%, #120303 100%);
+            border: 2px solid #d4af37;
+            border-radius: 12px;
+            padding: 30px 25px;
+            width: 90%;
+            max-width: 480px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-title {
+            font-family: 'Oswald', sans-serif;
+            color: #ffe8a3;
+            font-size: 16px;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            padding-bottom: 10px;
+            text-transform: uppercase;
+            line-height: 1.4;
+        }
+
+        .modal-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .modal-btn {
+            background: linear-gradient(135deg, #4a0303 0%, #1a0202 100%);
+            border: 2px solid #d4af37;
+            color: #ffffff;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .modal-btn:hover {
+            background: linear-gradient(135deg, #800c0c 0%, #4a0303 100%);
+            border-color: #ffe8a3;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #d4af37;
+            font-size: 24px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .modal-close:hover {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TALAWANG DAYAK DENGAN AKSEN TANGGAP BENCANA (SISI KIRI) -->
+    <div class="talawang-side talawang-left">
+        <svg viewBox="0 0 220 600" class="talawang-svg">
+            <defs>
+                <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ffe8a3"/>
+                    <stop offset="50%" stop-color="#d4af37"/>
+                    <stop offset="100%" stop-color="#805300"/>
+                </linearGradient>
+            </defs>
+            <polygon points="110,10 200,90 200,510 110,590 20,510 20,90" fill="#2e0808" stroke="url(#gold)" stroke-width="6"/>
+            <polygon points="110,25 185,98 185,502 110,575 35,502 35,98" fill="none" stroke="url(#gold)" stroke-width="2" stroke-dasharray="6,4"/>
+            <path d="M110,55 C155,100 175,150 110,210 C45,270 175,330 110,390 C45,440 110,520 110,520" fill="none" stroke="url(#gold)" stroke-width="5"/>
+            <path d="M110,55 C65,100 45,150 110,210 C175,270 45,330 110,390 C45,440 110,520 110,520" fill="none" stroke="url(#gold)" stroke-width="5"/>
+            
+            <!-- Aksen Simbol Tanggap Darurat Bencana (Perisai & Api/Gelombang) -->
+            <g transform="translate(110, 80) scale(0.7)">
+                <circle cx="0" cy="0" r="28" fill="#2e0808" stroke="url(#gold)" stroke-width="3"/>
+                <path d="M-10,10 L0,-15 L10,10 Z" fill="url(#gold)"/>
+                <circle cx="0" cy="12" r="3" fill="#ff4d4d"/>
+            </g>
+        </svg>
+    </div>
+
+    <!-- TALAWANG DAYAK DENGAN AKSEN TANGGAP BENCANA (SISI KANAN) -->
+    <div class="talawang-side talawang-right">
+        <svg viewBox="0 0 220 600" class="talawang-svg">
+            <polygon points="110,10 200,90 200,510 110,590 20,510 20,90" fill="#2e0808" stroke="url(#gold)" stroke-width="6"/>
+            <polygon points="110,25 185,98 185,502 110,575 35,502 35,98" fill="none" stroke="url(#gold)" stroke-width="2" stroke-dasharray="6,4"/>
+            <path d="M110,55 C155,100 175,150 110,210 C45,270 175,330 110,390 C45,440 110,520 110,520" fill="none" stroke="url(#gold)" stroke-width="5"/>
+            <path d="M110,55 C65,100 45,150 110,210 C175,270 45,330 110,390 C45,440 110,520 110,520" fill="none" stroke="url(#gold)" stroke-width="5"/>
+            
+            <g transform="translate(110, 80) scale(0.7)">
+                <circle cx="0" cy="0" r="28" fill="#2e0808" stroke="url(#gold)" stroke-width="3"/>
+                <path d="M-10,10 L0,-15 L10,10 Z" fill="url(#gold)"/>
+                <circle cx="0" cy="12" r="3" fill="#ff4d4d"/>
+            </g>
+        </svg>
+    </div>
+
+    <!-- KONTAINER UTAMA -->
+    <div class="main-wrapper">
+
+        <!-- HEADER LOGO BERPENDAR EMAS -->
+        <div class="header-box">
+            <div class="logo-kamtib-wrapper">
+                <svg viewBox="0 0 200 200" class="logo-kamtib-svg">
+                    <defs>
+                        <linearGradient id="gold-logo" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#ffe8a3"/>
+                            <stop offset="50%" stop-color="#d4af37"/>
+                            <stop offset="100%" stop-color="#996515"/>
+                        </linearGradient>
+                    </defs>
+                    <circle cx="100" cy="100" r="90" fill="#120303" stroke="url(#gold-logo)" stroke-width="5"/>
+                    <circle cx="100" cy="100" r="82" fill="none" stroke="url(#gold-logo)" stroke-width="2" stroke-dasharray="5,3"/>
+                    
+                    <path d="M100,35 L145,55 V105 C145,138 100,165 100,165 C100,165 55,138 55,105 V55 Z" fill="#4a0303" stroke="url(#gold-logo)" stroke-width="3"/>
+                    
+                    <!-- Ikon Perisai Tanggap Bencana & Tangan Pelindung -->
+                    <circle cx="100" cy="95" r="22" fill="#2e0808" stroke="url(#gold-logo)" stroke-width="2"/>
+                    <path d="M100,80 L112,102 H88 Z" fill="url(#gold-logo)"/>
+                    <circle cx="100" cy="108" r="3" fill="#ff4d4d"/>
+                    
+                    <path id="textPath" d="M 25, 100 A 75,75 0 1,1 175, 100" fill="none"/>
+                    <text fill="url(#gold-logo)" font-size="8.5" font-weight="bold" font-family="Oswald, sans-serif" letter-spacing="1">
+                        <textPath href="#textPath" startOffset="50%" text-anchor="middle">
+                            PENANGGULANGAN BENCANA
+                        </textPath>
+                    </text>
+                </svg>
+            </div>
+            <h1 class="header-title">
+                BIDANG RENCANA KONTIJENSI<br>
+                <span>DAN PENANGGULANGAN BENCANA</span>
+            </h1>
+        </div>
+
+        <!-- 1 KOTAK UTAMA -->
+        <div class="menu-container">
+
+            <div class="card-item" onclick="openModal()">
+                <div class="card-icon-wrapper">
+                    <!-- Ikon Laporan Bencana / Tanggap Darurat -->
+                    <svg class="custom-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2L1 21h22L12 2zm1 14h-2v-2h2v2zm0-4h-2V8h2v4z"/>
+                    </svg>
+                </div>
+                <div class="card-label">
+                    LAPORAN PELAKSANAAN PENANGGULANGAN PADA UPT TERDAMPAK BENCANA
+                </div>
+            </div>
+
+        </div>
+
+        <!-- NAVIGASI KEMBALI KE MENU UTAMA -->
+        <div style="margin-top: 35px; width: 100%;">
+            <a href="index.html" class="back-button">
+                ← KEMBALI KE MENU UTAMA
+            </a>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="footer-text">
+            <p>Dikembangkan oleh Tim</p>
+            <p class="footer-bold">PAMINTEL KANWIL DITJENPAS KALTENG</p>
+        </footer>
+
+    </div>
+
+    <!-- POP-UP MODAL PILIHAN AKSI -->
+    <div class="modal-overlay" id="actionModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div class="modal-title">LAPORAN PELAKSANAAN PENANGGULANGAN PADA UPT TERDAMPAK BENCANA</div>
+            <div class="modal-buttons">
+                <a href="https://docs.google.com/spreadsheets/d/1KBtXxkr0fm6mZfdfTivx6DkD226d-Kje/edit?usp=drive_link&ouid=117085855245096576575&rtpof=true&sd=true" target="_blank" class="modal-btn">
+                    <span>📊</span> PENGISIAN SPREADSHEET
+                </a>
+                <a href="https://drive.google.com/drive/folders/1wP8Zd8Szbm156CHxBNiAG4AhZGnXOUpY?usp=drive_link" target="_blank" class="modal-btn">
+                    <span>📁</span> UPLOAD LAPORAN_DATA DUKUNG
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT MODAL -->
+    <script>
+        function openModal() {
+            document.getElementById('actionModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('actionModal').classList.remove('active');
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('actionModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+
+</body>
+</html>

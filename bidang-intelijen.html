@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bidang Intelijen - Kanwil Ditjenpas Kalteng</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Roboto:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS Modal Pop-Up Interaktif Dinamis */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: linear-gradient(145deg, #2e0808 0%, #120303 100%);
+            border: 2px solid #d4af37;
+            border-radius: 12px;
+            padding: 30px 25px;
+            width: 90%;
+            max-width: 480px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-title {
+            font-family: 'Oswald', sans-serif;
+            color: #ffe8a3;
+            font-size: 17px;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            padding-bottom: 10px;
+            text-transform: uppercase;
+            line-height: 1.4;
+        }
+
+        .modal-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .modal-btn {
+            background: linear-gradient(135deg, #4a0303 0%, #1a0202 100%);
+            border: 2px solid #d4af37;
+            color: #ffffff;
+            padding: 13px 20px;
+            border-radius: 8px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .modal-btn:hover {
+            background: linear-gradient(135deg, #800c0c 0%, #4a0303 100%);
+            border-color: #ffe8a3;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #d4af37;
+            font-size: 24px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .modal-close:hover {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TALAWANG DAYAK (SISI KIRI) -->
+    <div class="talawang-side talawang-left">
+        <svg viewBox="0 0 220 600" class="talawang-svg">
+            <defs>
+                <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ffe8a3"/>
+                    <stop offset="50%" stop-color="#d4af37"/>
+                    <stop offset="100%" stop-color="#805300"/>
+                </linearGradient>
+            </defs>
+            <polygon points="110,10 200,90 200,510 110,590 20,510 20,90" fill="#2e0808" stroke="url(#gold)" stroke-width="6"/>
+            <polygon points="110,25 185,98 185,502 110,575 35,502 35,98" fill="none" stroke="url(#gold)" stroke-width="2" stroke-dasharray="6,4"/>
+            <path d="M110,55 C155,100 175,150 110,210 C45,270 175,330 110,390 C45,440 110,520 110,520" fill="none" stroke="url(#gold)" stroke-width="5"/>
+            <path d="M110,55 C65,100 45,150 110,210 C175,270 45,330 110,390 C175,440 110,520 110,520" fill="none" stroke="url(#gold)" stroke-width="5"/>
+            
+            <g transform="translate(110, 80) scale(0.7)">
+                <circle cx="0" cy="0" r="28" fill="#2e0808" stroke="url(#gold)" stroke-width="3"/>
+                <circle cx="0" cy="0" r="18" fill="none" stroke="url(#gold)" stroke-width="2" stroke-dasharray="4,2"/>
+                <circle cx="0" cy="0" r="6" fill="url(#gold)"/>
+            </g>
+        </svg>
+    </div>
+
+    <!-- TALAWANG DAYAK (SISI KANAN) -->
+    <div class="talawang-side talawang-right">
+        <svg viewBox="0 0 220 600" class="talawang-svg">
+            <polygon points="110,10 200,90 200,510 110,590 20,510 20,90" fill="#2e0808" stroke="url(#gold)" stroke-width="6"/>
+            <polygon points="110,25 185,98 185,502 110,575 35,502 35,98" fill="none" stroke="url(#gold)" stroke-width="2" stroke-dasharray="6,4"/>
+            <path d="M110,55 C155,100 175,150 110,210 C45,270 175,330 110,390 C45,440 110,520 110,520" fill="none" stroke="url(#gold)" stroke-width="5"/>
+            <path d="M110,55 C65,100 45,150 110,210 C175,270 45,330 110,390 C45,440 110,520 110,520" fill="none" stroke="url(#gold)" stroke-width="5"/>
+            
+            <g transform="translate(110, 80) scale(0.7)">
+                <circle cx="0" cy="0" r="28" fill="#2e0808" stroke="url(#gold)" stroke-width="3"/>
+                <circle cx="0" cy="0" r="18" fill="none" stroke="url(#gold)" stroke-width="2" stroke-dasharray="4,2"/>
+                <circle cx="0" cy="0" r="6" fill="url(#gold)"/>
+            </g>
+        </svg>
+    </div>
+
+    <!-- KONTAINER UTAMA -->
+    <div class="main-wrapper">
+
+        <!-- HEADER LOGO INTELIJEN -->
+        <div class="header-box">
+            <div class="logo-kamtib-wrapper">
+                <svg viewBox="0 0 200 200" class="logo-kamtib-svg">
+                    <defs>
+                        <linearGradient id="gold-logo" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#ffe8a3"/>
+                            <stop offset="50%" stop-color="#d4af37"/>
+                            <stop offset="100%" stop-color="#996515"/>
+                        </linearGradient>
+                    </defs>
+                    <circle cx="100" cy="100" r="90" fill="#120303" stroke="url(#gold-logo)" stroke-width="5"/>
+                    <circle cx="100" cy="100" r="82" fill="none" stroke="url(#gold-logo)" stroke-width="2" stroke-dasharray="5,3"/>
+                    
+                    <path d="M100,35 L145,55 V105 C145,138 100,165 100,165 C100,165 55,138 55,105 V55 Z" fill="#4a0303" stroke="url(#gold-logo)" stroke-width="3"/>
+                    
+                    <circle cx="100" cy="98" r="25" fill="#2e0808" stroke="url(#gold-logo)" stroke-width="2"/>
+                    <path d="M75,98 Q100,75 125,98 Q100,121 75,98 Z" fill="none" stroke="url(#gold-logo)" stroke-width="2.5"/>
+                    <circle cx="100" cy="98" r="10" fill="url(#gold-logo)"/>
+                    
+                    <path id="textPath" d="M 25, 100 A 75,75 0 1,1 175, 100" fill="none"/>
+                    <text fill="url(#gold-logo)" font-size="10" font-weight="bold" font-family="Oswald, sans-serif" letter-spacing="1.5">
+                        <textPath href="#textPath" startOffset="50%" text-anchor="middle">
+                            BIDANG INTELIJEN PEMASYARAKATAN
+                        </textPath>
+                    </text>
+                </svg>
+            </div>
+            <h1 class="header-title">BIDANG INTELIJEN</h1>
+        </div>
+
+        <!-- 4 KOTAK UTAMA -->
+        <div class="menu-container">
+
+            <!-- KOTAK 1 -->
+            <div class="card-item" onclick="openModal('wbp_risiko')">
+                <div class="card-icon-wrapper">
+                    <svg class="custom-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                    </svg>
+                </div>
+                <div class="card-label">
+                    DATA WARGA BINAAN RISIKO TINGGI
+                </div>
+            </div>
+
+            <!-- KOTAK 2 -->
+            <div class="card-item" onclick="openModal('laporan_intelijen')">
+                <div class="card-icon-wrapper">
+                    <svg class="custom-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                    </svg>
+                </div>
+                <div class="card-label">
+                    DATA LAPORAN INTELIJEN
+                </div>
+            </div>
+
+            <!-- KOTAK 3 -->
+            <div class="card-item" onclick="openModal('konsolidasi_intelijen')">
+                <div class="card-icon-wrapper">
+                    <svg class="custom-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                    </svg>
+                </div>
+                <div class="card-label">
+                    DATA KONSOLIDASI INTELIJEN
+                </div>
+            </div>
+
+            <!-- KOTAK 4 -->
+            <div class="card-item" onclick="openModal('wartelsuspas')">
+                <div class="card-icon-wrapper">
+                    <svg class="custom-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1 C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/>
+                    </svg>
+                </div>
+                <div class="card-label">
+                    DATA LAPORAN PENGAWASAN KOMUNIKASI (WARTELSUSPAS)
+                </div>
+            </div>
+
+        </div>
+
+        <!-- NAVIGASI KEMBALI KE MENU UTAMA -->
+        <div style="margin-top: 25px; width: 100%;">
+            <a href="index.html" class="back-button">
+                ← KEMBALI KE MENU UTAMA
+            </a>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="footer-text">
+            <p>Dikembangkan oleh Tim</p>
+            <p class="footer-bold">PAMINTEL KANWIL DITJENPAS KALTENG</p>
+        </footer>
+
+    </div>
+
+    <!-- POP-UP MODAL PILIHAN AKSI (DINAMIS) -->
+    <div class="modal-overlay" id="actionModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div class="modal-title" id="modalTitle">PILIHAN AKSES</div>
+            <div class="modal-buttons" id="modalButtonsContainer">
+                <!-- Tombol akan di-generate otomatis oleh JavaScript sesuai kategori -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT: PEMETAAN TAUTAN DINAMIS -->
+    <script>
+        const intelijenData = {
+            'wbp_risiko': {
+                title: 'DATA WARGA BINAAN RISIKO TINGGI',
+                buttons: [
+                    { label: '📊 PENGISIAN SPREADSHEET', url: 'https://docs.google.com/spreadsheets/d/1mhNni-NkBdcxAqiXR_D58cuE8vJqzVNo/edit?usp=drive_link&ouid=117085855245096576575&rtpof=true&sd=true' },
+                    { label: '📁 UPLOAD LAPORAN_DATA DUKUNG', url: 'https://drive.google.com/drive/folders/1k3EWOc1rHTbfoLO244oZhCMxYDl-nRTs?usp=drive_link' }
+                ]
+            },
+            'laporan_intelijen': {
+                title: 'DATA LAPORAN INTELIJEN',
+                buttons: [
+                    { label: '📁 UPLOAD LAPORAN_DATA DUKUNG', url: 'https://drive.google.com/drive/folders/1DM-4Mq5ZbPpyy-0I5O2C4GQ85Tq95pPd?usp=drive_link' },
+                    { label: '📄 FORMAT UNTUK PELAPORAN', url: 'https://docs.google.com/document/d/1xKc1Qt1oYwjY818jRNluQhgf4ZrvkOBF/edit?usp=drive_link&ouid=117085855245096576575&rtpof=true&sd=true' }
+                ]
+            },
+            'konsolidasi_intelijen': {
+                title: 'DATA KONSOLIDASI INTELIJEN',
+                buttons: [
+                    { label: '📊 PENGISIAN SPREADSHEET', url: 'https://docs.google.com/spreadsheets/d/1ZYvCeeU1KJWn7vdUzZBwomNrMGGu8B9S/edit?usp=drive_link&ouid=117085855245096576575&rtpof=true&sd=true' },
+                    { label: '📁 UPLOAD LAPORAN_DATA DUKUNG', url: 'https://drive.google.com/drive/folders/1g-N-fC5Vuv7dnU-VcPor5MAPTGYUzK5m?usp=drive_link' },
+                    { label: '📄 FORMAT UNTUK PELAPORAN', url: 'https://docs.google.com/document/d/1Kxfpu7qzCiKrgwZcc28rFvjWPvdwXskH/edit?usp=drive_link&ouid=117085855245096576575&rtpof=true&sd=true' }
+                ]
+            },
+            'wartelsuspas': {
+                title: 'DATA LAPORAN PENGAWASAN KOMUNIKASI (WARTELSUSPAS)',
+                buttons: [
+                    { label: '📊 PENGISIAN SPREADSHEET_DATA', url: 'https://docs.google.com/spreadsheets/d/1kv80jVCUf9j2sLiRBna9MLvCwr06-Sf9/edit?usp=drive_link&ouid=117085855245096576575&rtpof=true&sd=true' },
+                    { label: '📊 PENGISIAN SPREADSHEET_JUMLAH', url: 'https://docs.google.com/spreadsheets/d/16EDvqe5D-DdgH37L7fFt-TWEq3zWdO6lB-Df1rQDSuQ/edit?usp=drive_link' }
+                ]
+            }
+        };
+
+        function openModal(categoryKey) {
+            const data = intelijenData[categoryKey];
+            if (data) {
+                document.getElementById('modalTitle').innerText = data.title;
+                const container = document.getElementById('modalButtonsContainer');
+                container.innerHTML = ''; // Clear tombol lama
+
+                // Tambahkan tombol sesuai jumlah pilihan kategori
+                data.buttons.forEach(btn => {
+                    const a = document.createElement('a');
+                    a.href = btn.url;
+                    a.target = '_blank';
+                    a.className = 'modal-btn';
+                    a.innerHTML = btn.label;
+                    container.appendChild(a);
+                });
+
+                document.getElementById('actionModal').classList.add('active');
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('actionModal').classList.remove('active');
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('actionModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+
+</body>
+</html>
